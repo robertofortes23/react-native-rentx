@@ -20,7 +20,7 @@ interface CarData {
   name: string;
   rent: {
     period: string;
-    price: number;
+    price: string;
   };
   thumbnail: string;
 }
