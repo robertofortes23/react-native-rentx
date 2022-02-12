@@ -24,9 +24,11 @@ import {
   Price,
   About,
   Accessories,
+  Footer,
 } from "./styles";
 import { ImageSlider } from "../../components/ImageSlider";
 import { Accessory } from "../../components/Acessory";
+import { Button } from "../../components/Button";
 
 export const CarDetails: React.FC = () => {
   const imageUrl =
@@ -69,6 +71,10 @@ export const CarDetails: React.FC = () => {
           }
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Escolher período do aluguel" enabled={true} />
+      </Footer>
     </Container>
   );
 };
