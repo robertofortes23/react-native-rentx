@@ -1,4 +1,5 @@
 import { FlatList } from "react-native";
+import { CarDTO } from "../../dtos/CarDTO";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
@@ -36,4 +37,4 @@ export const CarList = styled(FlatList).attrs({
   showsVerticalScrollIndicator: false,
 })`
   width: 100%;
-`;
+` as React.ComponentType as new <DataListProps>() => FlatList<DataListProps>;
