@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { BackButton } from "../../components/BackButton";
 
@@ -31,12 +31,22 @@ import { Accessory } from "../../components/Acessory";
 import { Button } from "../../components/Button";
 
 export const CarDetails: React.FC = () => {
+  const navigation = useNavigation();
+
+  function handleConfirmRental() {
+    navigation.navigate("Scheduling");
+  }
+
+  function handleBack() {
+    navigation.goBack();
+  }
+
   const imageUrl =
     "https://www.freeiconspng.com/uploads/audi-png-transparent-png-12.png";
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBack} />
       </Header>
 
       <CarImages>
@@ -73,7 +83,11 @@ export const CarDetails: React.FC = () => {
       </Content>
 
       <Footer>
-        <Button title="Escolher período do aluguel" enabled={true} />
+        <Button
+          title="Escolher período do aluguel"
+          enabled={true}
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

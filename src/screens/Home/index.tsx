@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { View, Text, StatusBar } from "react-native";
 
 import { Container, Header, TotalCars, HeaderContent, CarList } from "./styles";
@@ -18,6 +20,12 @@ const carData = {
 };
 
 export function Home() {
+  const navigation = useNavigation();
+
+  function handleCarDetails() {
+    navigation.navigate("CarDetails");
+  }
+
   return (
     <Container>
       <StatusBar
@@ -34,7 +42,9 @@ export function Home() {
       <CarList
         data={[1, 2, 3]}
         keyExtractor={(item) => String(item)}
-        renderItem={({ item }) => <Car data={carData} />}
+        renderItem={({ item }) => (
+          <Car data={carData} onPress={() => handleCarDetails()} />
+        )}
       />
     </Container>
   );

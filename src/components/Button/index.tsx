@@ -6,6 +6,7 @@ import { Container, Title } from "./styles";
 interface Props extends RectButtonProps {
   title: string;
   color?: string;
+  onPress: () => void;
 }
 
 export function Button({
