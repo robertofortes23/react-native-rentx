@@ -29,9 +29,16 @@ import {
 import { ImageSlider } from "../../components/ImageSlider";
 import { Accessory } from "../../components/Acessory";
 import { Button } from "../../components/Button";
+import { CarDTO } from "../../dtos/CarDTO";
+
+interface Params {
+  car: CarDTO;
+}
 
 export const CarDetails: React.FC = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { car } = route.params as Params;
 
   function handleConfirmRental() {
     navigation.navigate("Scheduling");
@@ -50,36 +57,33 @@ export const CarDetails: React.FC = () => {
       </Header>
 
       <CarImages>
-        <ImageSlider imagesUrl={[imageUrl]} />
+        <ImageSlider imagesUrl={car.photos as []} />
       </CarImages>
 
       <Content>
         <Details>
           <Description>
-            <Brand>{"Lamborguini"}</Brand>
-            <Name>{"Huracan"}</Name>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.name}</Name>
           </Description>
 
           <Rent>
-            <Period>{"Ao dia"}</Period>
-            <Price>{"R$ 580"}</Price>
+            <Period>{car.rent.period}</Period>
+            <Price>R$ {car.rent.price}</Price>
           </Rent>
         </Details>
 
         <Accessories>
-          <Accessory icon={speedSvg} name="380 km/h" />
-          <Accessory icon={accelerationSvg} name="3.2s" />
-          <Accessory icon={forceSvg} name="800 HP" />
-          <Accessory icon={gasolineSvg} name="Gasolina" />
-          <Accessory icon={exchangeSvg} name="Auto" />
-          <Accessory icon={peopleSvg} name="2 pessoas" />
+          {car.accessories.map((accessory) => (
+            <Accessory
+              key={accessory.type}
+              icon={speedSvg}
+              name={accessory.name}
+            />
+          ))}
         </Accessories>
 
-        <About>
-          {
-            "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
-          }
-        </About>
+        <About>{car.about}</About>
       </Content>
 
       <Footer>
