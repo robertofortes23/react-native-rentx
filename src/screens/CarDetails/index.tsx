@@ -30,6 +30,7 @@ import { ImageSlider } from "../../components/ImageSlider";
 import { Accessory } from "../../components/Acessory";
 import { Button } from "../../components/Button";
 import { CarDTO } from "../../dtos/CarDTO";
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 
 interface Params {
   car: CarDTO;
@@ -48,8 +49,6 @@ export const CarDetails: React.FC = () => {
     navigation.goBack();
   }
 
-  const imageUrl =
-    "https://www.freeiconspng.com/uploads/audi-png-transparent-png-12.png";
   return (
     <Container>
       <Header>
@@ -77,7 +76,7 @@ export const CarDetails: React.FC = () => {
           {car.accessories.map((accessory) => (
             <Accessory
               key={accessory.type}
-              icon={speedSvg}
+              icon={getAccessoryIcon(accessory.type)}
               name={accessory.name}
             />
           ))}
