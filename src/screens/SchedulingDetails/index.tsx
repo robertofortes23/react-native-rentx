@@ -53,6 +53,10 @@ export const SchedulingDetails: React.FC = () => {
     navigation.navigate("SchedulingComplete");
   }
 
+  function handleBack() {
+    navigation.goBack();
+  }
+
   const imageUrl = [
     "https://www.freeiconspng.com/uploads/audi-png-transparent-png-12.png",
     "https://www.freeiconspng.com/uploads/audi-png-transparent-png-12.png",
@@ -60,7 +64,7 @@ export const SchedulingDetails: React.FC = () => {
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBack} />
       </Header>
 
       <CarImages>

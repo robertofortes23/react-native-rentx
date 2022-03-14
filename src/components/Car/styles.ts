@@ -28,8 +28,8 @@ export const Brand = styled.Text`
 
 export const Name = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_500};
-  color: ${({ theme }) => theme.colors.text_detail};
-  font-size: ${RFValue(10)}px;
+  color: ${({ theme }) => theme.colors.header};
+  font-size: ${RFValue(15)}px;
 `;
 
 export const About = styled.View`
@@ -60,6 +60,6 @@ export const Price = styled.Text`
 export const Type = styled.View``;
 
 export const CarImage = styled.Image`
-  width: 167px;
-  height: 85px;
+  width: ${RFValue(167)}px;
+  height: ${RFValue(85)}px;
 `;

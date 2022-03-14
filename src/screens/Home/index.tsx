@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-import { View, Text, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 
 import { Container, Header, TotalCars, HeaderContent, CarList } from "./styles";
 
