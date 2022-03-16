@@ -1,11 +1,13 @@
 import React from "react";
 import {
   Calendar as CustomCalendar,
-  LocaleConfig,
   CalendarProps,
+  LocaleConfig,
 } from "react-native-calendars";
 import { Feather } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
+
+import { generateInterval } from "./generateInterval";
 import { ptBR } from "./localeConfig";
 
 LocaleConfig.locales["pt-br"] = ptBR;
@@ -65,4 +67,4 @@ function Calendar({ markedDates, onDayPress }: CalendarProps) {
   );
 }
 
-export { Calendar, MarkedDatesProps, DayProps };
+export { Calendar, MarkedDatesProps, DayProps, generateInterval };
