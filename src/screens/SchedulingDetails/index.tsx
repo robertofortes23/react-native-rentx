@@ -74,17 +74,18 @@ export const SchedulingDetails: React.FC = () => {
       ...dates,
     };
 
-    await api
-      .post("/rentals", {
+    await api.post("schedules_byuser", {
+      user_id: 1,
+      car,
+    });
+
+    api
+      .put(`/schedules_bycars/${car.id}`, {
         id: car.id,
         unavailable_dates,
       })
-      .then(() => {
-        navigation.navigate("SchedulingComplete");
-      })
-      .catch((erro) => {
-        Alert.alert("Não foi possível confirmar o agendamento.");
-      });
+      .then(() => navigation.navigate("SchedulingComplete"))
+      .catch(() => Alert.alert("Não foi possível confirmar o agendamento."));
   }
 
   function handleBack() {
