@@ -67,7 +67,7 @@ export const SchedulingDetails: React.FC = () => {
   const theme = useTheme();
 
   async function handleConfirmRental() {
-    const schedulingByCar = await api.get(`/schedules/${car.id}`);
+    const schedulingByCar = await api.get(`/schedules_bycars/${car.id}`);
 
     const unavailable_dates = {
       ...schedulingByCar.data.unavailable_dates,
