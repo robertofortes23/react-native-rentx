@@ -54,6 +54,7 @@ interface RentalPeriod {
 }
 
 export const SchedulingDetails: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>(
     {} as RentalPeriod
   );
@@ -67,6 +68,8 @@ export const SchedulingDetails: React.FC = () => {
   const theme = useTheme();
 
   async function handleConfirmRental() {
+    setLoading(true);
+
     const schedulingByCar = await api.get(`/schedules_bycars/${car.id}`);
 
     const unavailable_dates = {
@@ -77,6 +80,11 @@ export const SchedulingDetails: React.FC = () => {
     await api.post("schedules_byuser", {
       user_id: 1,
       car,
+      startDate: format(getPlatformDate(new Date(dates[0])), "dd/MM/yyyy"),
+      endDate: format(
+        getPlatformDate(new Date(dates[dates.length - 1])),
+        "dd/MM/yyyy"
+      ),
     });
 
     api
@@ -85,7 +93,10 @@ export const SchedulingDetails: React.FC = () => {
         unavailable_dates,
       })
       .then(() => navigation.navigate("SchedulingComplete"))
-      .catch(() => Alert.alert("Não foi possível confirmar o agendamento."));
+      .catch(() => {
+        setLoading(false);
+        Alert.alert("Não foi possível confirmar o agendamento.");
+      });
   }
 
   function handleBack() {
@@ -173,7 +184,7 @@ export const SchedulingDetails: React.FC = () => {
         <Button
           title="Alugar agora"
           color={theme.colors.success}
-          enabled={true}
+          enabled={!loading}
           onPress={handleConfirmRental}
         />
       </Footer>
