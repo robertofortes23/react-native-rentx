@@ -41,7 +41,7 @@ interface Params {
 }
 
 export function Scheduling() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
   );
@@ -58,6 +58,8 @@ export function Scheduling() {
   const { car } = route.params as Params;
 
   function handleConfirmRental() {
+    setLoading(true);
+
     navigation.navigate("SchedulingDetails", {
       car,
       dates: Object.keys(markedDates),
@@ -137,6 +139,7 @@ export function Scheduling() {
           title="Confirmar"
           onPress={handleConfirmRental}
           enabled={!!rentalPeriod.startFormatted}
+          loading={loading}
         />
       </Footer>
     </Container>
