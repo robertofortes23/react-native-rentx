@@ -41,6 +41,7 @@ interface Params {
 }
 
 export function Scheduling() {
+  const [loading, setLoading] = useState(true);
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
   );
@@ -132,7 +133,11 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" onPress={handleConfirmRental} />
+        <Button
+          title="Confirmar"
+          onPress={handleConfirmRental}
+          enabled={!!rentalPeriod.startFormatted}
+        />
       </Footer>
     </Container>
   );

@@ -185,6 +185,7 @@ export const SchedulingDetails: React.FC = () => {
           title="Alugar agora"
           color={theme.colors.success}
           enabled={!loading}
+          loading={loading}
           onPress={handleConfirmRental}
         />
       </Footer>
