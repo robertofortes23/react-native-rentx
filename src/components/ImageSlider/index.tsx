@@ -19,7 +19,6 @@ interface ChangeImageProps {
 }
 
 export const ImageSlider: React.FC<Props> = ({ imagesUrl }) => {
-  console.log("🚀 ~ file: index.tsx ~ line 25 ~ imagesUrl", imagesUrl);
   const [imageIndex, setImageIndex] = useState(0);
 
   const indexChanged = useRef((info: ChangeImageProps) => {
