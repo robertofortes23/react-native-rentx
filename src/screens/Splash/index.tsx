@@ -52,9 +52,14 @@ export function Splash() {
     };
   });
 
+  function startApp() {
+    navigation.navigate("Home");
+  }
+
   useEffect(() => {
     splashAnimation.value = withTiming(50, { duration: 1000 }, () => {
       "worklet";
+      runOnJS(startApp)();
     });
   }, []);
 
