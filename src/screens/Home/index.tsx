@@ -23,7 +23,7 @@ import { CarDTO } from "../../dtos/CarDTO";
 
 import { RFValue } from "react-native-responsive-fontsize";
 import { Car } from "../../components/Car";
-import { Load } from "../../components/Load";
+import { LoadAnimation } from "../../components/LoadAnimation";
 
 const ButtonAnimated = Animated.createAnimatedComponent(RectButton);
 
@@ -103,7 +103,7 @@ export function Home() {
         </HeaderContent>
       </Header>
       {loading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <CarList
           data={cars}
