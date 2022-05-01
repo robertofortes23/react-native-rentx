@@ -27,6 +27,10 @@ export default function SignUpFirstStep() {
   const [email, setEmail] = useState("");
   const [driverLicense, setDriverLicense] = useState("");
 
+  function handleBack() {
+    navigation.goBack();
+  }
+
   async function handleNextStep() {
     try {
       const schema = yup.object().shape({
@@ -54,7 +58,7 @@ export default function SignUpFirstStep() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
           <Header>
-            <BackButton onPress={() => navigation.goBack()} />
+            <BackButton onPress={handleBack} />
             <Steps>
               <Bullet active />
               <Bullet />

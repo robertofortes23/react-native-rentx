@@ -22,11 +22,27 @@ import { Button } from "../../../components/Button";
 import { PasswordInput } from "../../../components/PasswordInput";
 import { api } from "../../../services/api";
 
+interface Params {
+  user: {
+    name: string;
+    email: string;
+    driverLicense: string;
+  };
+}
+
 export default function SignUpSecondStep() {
   const navigation = useNavigation();
-  const theme = useTheme();
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const route = useRoute();
+  const theme = useTheme();
+
+  const { user } = route.params as Params;
+
+  function handleBack() {
+    navigation.goBack();
+  }
 
   async function handleRegister() {
     if (!password || !passwordConfirm) {
@@ -35,6 +51,24 @@ export default function SignUpSecondStep() {
     if (password !== passwordConfirm) {
       return Alert.alert("Alerta", "As senhas não são iguais");
     }
+
+    await api
+      .post("/users", {
+        name: user.name,
+        email: user.email,
+        driver_license: user.driverLicense,
+        password,
+      })
+      .then(() => {
+        navigation.navigate("Confirmation", {
+          nextScreenRoute: "SignIn",
+          title: "Conta Criada!",
+          message: `Agora é só fazer login\ne aproveitar.`,
+        });
+      })
+      .catch(() => {
+        Alert.alert("Opa", "Não foi possível cadastrar");
+      });
   }
 
   return (
@@ -42,7 +76,7 @@ export default function SignUpSecondStep() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
           <Header>
-            <BackButton onPress={() => navigation.goBack()} />
+            <BackButton onPress={handleBack} />
             <Steps>
               <Bullet active />
               <Bullet />
